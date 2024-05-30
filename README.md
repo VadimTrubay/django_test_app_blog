@@ -1,0 +1,2 @@
+# django_test_app_blog
+django_test_app_blog
