@@ -31,7 +31,7 @@ INSTALLED_APPS = [
     "drf_spectacular",
     'rest_framework.authtoken',
     'djoser',
-    # 'drf_yasg',
+    'users',
 ]
 
 MIDDLEWARE = [
@@ -113,8 +113,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-# Internationalization
-# https://docs.djangoproject.com/en/5.0/topics/i18n/
+AUTH_USER_MODEL = 'users.CustomUser'
 
 LANGUAGE_CODE = "en-us"
 

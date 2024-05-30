@@ -2,5 +2,5 @@
 .venv/
 venv/
 
-postgres-data/
 
+/postgres-data
