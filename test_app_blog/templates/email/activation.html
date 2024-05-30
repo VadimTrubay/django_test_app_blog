@@ -1,0 +1,11 @@
+{% block subject %}
+{% blocktrans %}Account activation on {{ site_name }}{% endblocktrans %}
+{% endblock subject %}
+
+{% block text_body %}
+{% blocktrans %}You're receiving this email because you need to finish activation process on {{ site_name }}.{% endblocktrans %}
+
+{% trans "Please go to the following page to activate account:" %}
+{{ http }}://{{ localhost:3000 }}/{{ {% url 'registration/activate' uidb64=uid token=token %} }}
+
+{% trans "Thanks for using our site!" %}
