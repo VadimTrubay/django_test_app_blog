@@ -13,7 +13,7 @@ SECRET_KEY = env("SECRET_KEY")
 DEBUG = True
 
 ALLOWED_HOSTS = ["*"]
-CSRF_TRUSTED_ORIGINS = ["http://localhost"]
+# CSRF_TRUSTED_ORIGINS = ["http://localhost"]
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -132,14 +132,14 @@ STATICFILES_DIRS = (BASE_DIR / "static",)
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
-"""For Gmail"""
+"""For ukrnet"""
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_ADMIN = env('GMAIL_ADMIN')
-EMAIL_SERVER = env('GMAIL_SERVER')
-EMAIL_HOST = env('GMAIL_HOST')
-EMAIL_PORT = env('GMAIL_PORT')
-EMAIL_HOST_USER = env('GMAIL_HOST_USER')
-EMAIL_HOST_PASSWORD = env('GMAIL_HOST_PASSWORD')
+EMAIL_ADMIN = env('UKRNET_ADMIN')
+EMAIL_SERVER = env('UKRNET_SERVER')
+EMAIL_HOST = env('UKRNET_HOST')
+EMAIL_PORT = env('UKRNET_PORT')
+EMAIL_HOST_USER = env('UKRNET_HOST_USER')
+EMAIL_HOST_PASSWORD = env('UKRNET_HOST_PASSWORD')
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 EMAIL_STARTTLS = True
 EMAIL_USE_SSL = False
