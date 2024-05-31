@@ -16,8 +16,16 @@ services:
     build: .
     command: python manage.py runserver 0.0.0.0:8000
     volumes:
-      - .:/app
+      - .:/test_app_blog
     ports:
       - "8000:8000"
+    depends_on:
+      - db
+
+  bot:
+    build: .
+    command: python test_app_telegram_bot/bot.py
+    volumes:
+      - .:/test_app_blog
     depends_on:
       - db

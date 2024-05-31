@@ -1,0 +1,3 @@
+crontab -e
+0 * * * * /parse_and_save_news.py >> /news_parser.log 2>&1
+crontab -l
