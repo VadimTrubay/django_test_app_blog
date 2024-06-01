@@ -2,20 +2,22 @@
 
 # How to start for developers:
 - update project from Git https://github.com/VadimTrubay/django_test_app_blog
-- create environment 
+- create environment
+- activate environment
+- rename files `.env_example` file to `.env` and fill in your credentials
 - pip install -r requirements.txt
-- create in root folder your own .env file like .env.example
 - run docker application
 
-- run in terminal: `docker-compose up` -> up Redis + Postgres
-- run in terminal: `alembic upgrade head` -> implementation current models to DB
-- run in terminal: `uvicorn main:app --host localhost --port 8000 --reload` -> start application
-- run in terminal: `streamlit run main_app.py` -> start front application
+- run in terminal: `docker-compose build` -> build Web + Postgres + Bot
+- run in terminal: `docker-compose up` -> up Web + Postgres + Bot
+- run in terminal: `python manage.py migrate` -> migrate current models to DB
+- run in terminal: `python manage.py createsuperuser` -> create super user admin
+- run in terminal: `python manage.py runserver` -> starts Django server
+- run in terminal: `python bot.py` -> starts telegram bot
+- you need create telegram bot in Telegram and fill in your credentials token to `.env`
+- for start scraping_app run in terminal `python parse_and_save_news.py`
+- 
 
 - now you have access to:
-- http://127.0.0.1:8000/docs -> Swagger documentation
-- http://localhost:8501/ -> Streamlit frontend
+- http://127.0.0.1:8000/api/docs -> Swagger documentation DRF Application
 
-# Shut off
-- terminal with uvicorn -> Press CTRL+C to quit
-- terminal with docker run: `docker-compose down` -> shut Redis+Postgres
