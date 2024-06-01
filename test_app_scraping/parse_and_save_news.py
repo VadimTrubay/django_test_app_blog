@@ -1,9 +1,8 @@
 import os
-
 import requests
-from bs4 import BeautifulSoup
 import psycopg2
 import logging
+from bs4 import BeautifulSoup
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -17,14 +16,14 @@ DB_PASSWORD = os.getenv('DATABASE_PASSWORD')
 DB_HOST = os.getenv('DATABASE_HOST')
 DB_PORT = os.getenv('DATABASE_PORT')
 
-URL = os.getenv('URL')
+# URL = os.getenv('URL')
+URL = 'https://news.ycombinator.com/'
 
 LOG_FILE = 'news_parser.log'
 logging.basicConfig(filename=LOG_FILE, level=logging.INFO,
                     format='%(asctime)s - %(levelname)s - %(message)s')
 
 def create_table():
-    """Create the news_articles table if it doesn't exist."""
     conn = psycopg2.connect(dbname=DB_NAME, user=DB_USER, password=DB_PASSWORD, host=DB_HOST, port=DB_PORT)
     cursor = conn.cursor()
     cursor.execute('''
@@ -42,7 +41,7 @@ def create_table():
 def parse_news():
     try:
         response = requests.get(URL)
-        response.raise_for_status()  # Raise an exception for HTTP errors
+        response.raise_for_status()
         soup = BeautifulSoup(response.text, 'html.parser')
         articles = soup.select('span.titleline')
         news_list = []

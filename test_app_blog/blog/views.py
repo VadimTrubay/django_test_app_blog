@@ -1,6 +1,6 @@
 import asyncio
 import os
-from os.path import join, dirname
+from os.path import join
 from pathlib import Path
 from dotenv import load_dotenv
 
@@ -15,13 +15,13 @@ from rest_framework.permissions import IsAuthenticated
 from telegram import Bot
 from asgiref.sync import sync_to_async
 
-# Load environment variables from .env file
 load_dotenv()
 
 dotenv_path = join(Path(__file__).resolve().parent.parent, '.env')
 load_dotenv(dotenv_path)
 
 TELEGRAM_BOT_TOKEN = os.environ.get('TELEGRAM_BOT_TOKEN')
+
 
 async def notify_subscribers(article):
     bot = Bot(token=TELEGRAM_BOT_TOKEN)
@@ -31,9 +31,11 @@ async def notify_subscribers(article):
         print(subscriber.chat_id)
         await bot.send_message(chat_id=subscriber.chat_id, text=message)
 
+
 class LatestArticleView(generics.ListAPIView):
     queryset = Article.objects.all().order_by('-published_date')[:1]
     serializer_class = ArticleSerializer
+
 
 class ArticleViewSet(viewsets.ModelViewSet):
     queryset = Article.objects.all()
@@ -50,6 +52,7 @@ class ArticleViewSet(viewsets.ModelViewSet):
             asyncio.set_event_loop(loop)
         loop.run_until_complete(notify_subscribers(article))
         print('finished')
+
 
 class SubscribeView(APIView):
     def post(self, request, *args, **kwargs):
