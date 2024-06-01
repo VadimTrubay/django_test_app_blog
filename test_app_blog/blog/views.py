@@ -47,7 +47,7 @@ class ArticleViewSet(viewsets.ModelViewSet):
         print('created')
         try:
             loop = asyncio.get_event_loop()
-        except RuntimeError:  # There is no current event loop in the thread
+        except RuntimeError:
             loop = asyncio.new_event_loop()
             asyncio.set_event_loop(loop)
         loop.run_until_complete(notify_subscribers(article))

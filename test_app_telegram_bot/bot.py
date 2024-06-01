@@ -1,6 +1,6 @@
 import os
 import requests
-from telegram import Update, Bot
+from telegram import Update
 from telegram.ext import Application, CommandHandler, CallbackContext
 from dotenv import load_dotenv
 
