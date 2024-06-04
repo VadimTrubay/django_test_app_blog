@@ -24,6 +24,13 @@ logging.basicConfig(filename=LOG_FILE, level=logging.INFO,
                     format='%(asctime)s - %(levelname)s - %(message)s')
 
 def create_table():
+    """
+    The create_table function creates a table in the database if it does not already exist.
+    The function takes no arguments and returns nothing.
+    
+    :return: Nothing
+    :doc-author: Trelent
+    """
     conn = psycopg2.connect(dbname=DB_NAME, user=DB_USER, password=DB_PASSWORD, host=DB_HOST, port=DB_PORT)
     cursor = conn.cursor()
     cursor.execute('''
@@ -39,6 +46,13 @@ def create_table():
 
 
 def parse_news():
+    """
+    The parse_news function takes no arguments and returns a list of tuples.
+    Each tuple contains the title of an article and its URL.
+    
+    :return: A list of tuples
+    :doc-author: Trelent
+    """
     try:
         response = requests.get(URL)
         response.raise_for_status()
@@ -57,6 +71,15 @@ def parse_news():
 
 
 def save_to_database(news_list):
+    """
+    The save_to_database function takes a list of tuples as an argument.
+    Each tuple contains the title and url of a news article.
+    The function then connects to the database, creates a cursor, and inserts each tuple into the database.
+    
+    :param news_list: Pass the list of news articles to be saved to the database
+    :return: None
+    :doc-author: Trelent
+    """
     if news_list is None:
         return
     try:
